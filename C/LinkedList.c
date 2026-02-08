@@ -79,6 +79,6 @@ int main(void){
     insert(&list, 0);
     insertLast(&list, 9);
     printList(&list);
-    return 0;
     freeList(&list);
+    return 0;
 }
