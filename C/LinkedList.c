@@ -39,14 +39,10 @@ bool insertLast(LinkedList *list, int value){
     if (temp == NULL){
         return false;
     }
-    
-    // Handle empty list
     if (list->head == NULL){
         list->head = temp;
         return true;
     }
-    
-    // Traverse to the last node
     Node *current = list->head;
     while(current->next != NULL){
         current = current->next;
@@ -54,6 +50,7 @@ bool insertLast(LinkedList *list, int value){
     current->next = temp;
     return true;
 }
+
 
 void printList(LinkedList *list){
     Node *current = list->head;
@@ -64,6 +61,16 @@ void printList(LinkedList *list){
     printf("\n");
 }
 
+void freeList(LinkedList *list){
+    Node *current = list->head;
+    Node *temp_next = NULL;
+    while (current != NULL){
+        temp_next = current->next;
+        free(current);
+        current = temp_next;
+    }
+    list->head = NULL;
+}
 
 int main(void){
     LinkedList list;
@@ -73,4 +80,5 @@ int main(void){
     insertLast(&list, 9);
     printList(&list);
     return 0;
+    freeList(&list);
 }
