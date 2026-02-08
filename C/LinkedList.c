@@ -51,6 +51,28 @@ bool insertLast(LinkedList *list, int value){
     return true;
 }
 
+bool pop(LinkedList *list, int value){
+    Node *current = list->head;
+    Node *prev = NULL;
+    if (list->head->data == value){
+        list->head = list->head->next;
+        current->next = NULL;
+        free(current);
+        return true;
+    }
+    while (current != NULL && current->data != value){
+        prev = current;
+        current = current->next;
+    }
+    if (current == NULL){
+        printf("Value not found");
+        return false;
+    }
+    prev->next = current->next;
+    free(current);
+    return true;
+}
+
 
 void printList(LinkedList *list){
     Node *current = list->head;
@@ -78,7 +100,7 @@ int main(void){
     (list.head)->next = createNode(5);
     insert(&list, 0);
     insertLast(&list, 9);
+    pop(&list, 0);
     printList(&list);
-    freeList(&list);
     return 0;
 }

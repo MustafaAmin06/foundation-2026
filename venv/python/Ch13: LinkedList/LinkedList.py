@@ -4,7 +4,6 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-
     def node_append(self, value):
         new_node = Node(value)
         if self.head == None:
@@ -15,17 +14,13 @@ class LinkedList:
                 current = current.next
             current.next = new_node
 
-
-
     def node_prepend(self,value):
         new_node = Node(value)
         new_node.next = self.head
         self.head = new_node
 
-
     def node_deletion(self,value):
         current = self.head
-        print(current)
         if self.head is None:
             print("theres litteraly nothing to delete what are you doing")
             return
@@ -41,9 +36,6 @@ class LinkedList:
                 print("Didnt find this value")
                 return
             prev.next = current.next
-
-
-
 
     def print_nodes(self):
         current = self.head
