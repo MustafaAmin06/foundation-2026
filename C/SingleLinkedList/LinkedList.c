@@ -40,6 +40,10 @@ bool insertLast(LinkedList *list, int value){
         return false;
     }
     if (list->head == NULL){
+        print("You dont have any nodes");
+        return false;
+    }
+    if (list->head == NULL){
         list->head = temp;
         return true;
     }
@@ -102,5 +106,6 @@ int main(void){
     insertLast(&list, 9);
     pop(&list, 0);
     printList(&list);
+    freeList(&list);
     return 0;
 }
