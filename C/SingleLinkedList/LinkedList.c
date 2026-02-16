@@ -40,7 +40,7 @@ bool insertLast(LinkedList *list, int value){
         return false;
     }
     if (list->head == NULL){
-        print("You dont have any nodes");
+        printf("You dont have any nodes");
         return false;
     }
     if (list->head == NULL){
@@ -98,13 +98,32 @@ void freeList(LinkedList *list){
     list->head = NULL;
 }
 
+void reverseList(LinkedList *list){
+    if (list == NULL|| list->head == NULL || list->head->next == NULL){
+        return;
+    }
+    Node *p = list->head;
+    Node *c = list->head->next;
+    Node *n = list->head->next->next;
+    p->next = NULL;
+    while(n != NULL){
+        c->next = p;
+        p = c;
+        c = n;
+        n = n->next;
+    }
+    c->next = p;
+    list->head = c;
+}
+
 int main(void){
     LinkedList list;
-    list.head = createNode(10);
-    (list.head)->next = createNode(5);
-    insert(&list, 0);
-    insertLast(&list, 9);
-    pop(&list, 0);
+    list.head = createNode(0);
+    for (int i = 1; i <= 10; i++) {
+        insertLast(&list, i);
+    }
+    printList(&list);
+    reverseList(&list);
     printList(&list);
     freeList(&list);
     return 0;
