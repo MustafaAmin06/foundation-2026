@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
+      "cwd": "/home/mustafaamin/dev/foundation-2026/C/DoubleLinkedList",
+      "program": "/home/mustafaamin/dev/foundation-2026/C/DoubleLinkedList/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

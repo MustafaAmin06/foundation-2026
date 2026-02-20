@@ -110,11 +110,52 @@ bool deleteNode(LinkedList *list, int value){
     return true;
 }
 
+bool insertIndex(LinkedList *list, int value, int index) {
+    if (index < 0) {
+        return false;
+    }
+
+    if (index == 0) {
+        return insertFront(list, value);
+    }
+
+    Node *current = list->head;
+    int currentIndex = 0;
+
+    while (current != NULL && currentIndex < index) {
+        current = current->next;
+        currentIndex++;
+    }
+
+    if (current == NULL && currentIndex == index) {
+        return insertEnd(list, value);
+    }
+
+    if (current == NULL) {
+        return false;
+    }
+
+    Node *temp = createNode(value);
+    if (temp == NULL) {
+        return false;
+    }
+
+    Node *prevNode = current->prev;
+
+    prevNode->next = temp;
+    temp->prev = prevNode;
+    temp->next = current;
+    current->prev = temp;
+
+    return true;
+}
+
 int main(void){
     LinkedList list;
     list.head = createNode(1);
     insertFront(&list, 0);
     insertEnd(&list, 7);
+    insertIndex(&list, 2, 2);
     printList(&list);
     return 0;
 }
