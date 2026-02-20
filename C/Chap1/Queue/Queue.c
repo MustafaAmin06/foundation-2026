@@ -37,7 +37,6 @@ bool isEmpty(Queue *q) {
     return q->front == NULL;
 }
 
-// Add an element to the rear of the queue
 bool enqueue(Queue *q, int value) {
     Node *temp = createNode(value);
     if (temp == NULL) {
