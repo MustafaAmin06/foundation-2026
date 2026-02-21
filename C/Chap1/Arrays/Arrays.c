@@ -22,9 +22,21 @@ void reverseArray(int arr[], int size);
 
 void shiftLeft(int arr[], int size);
 
+void printArray(int arr[], int size);
+
+void shiftRightByK(int arr[], int size, int k);
+
 int main(){
-    int arr[6] = {1, 2, 3, 4, 5,6};
-    return 0;
+    int arr[5] = {1, 2, 3, 4, 5};
+    shiftRightByK(arr, 5, 3);
+    printArray(arr, 5);
+}
+
+void printArray(int arr[], int size){
+    for(int i = 0; i < size; i++){
+        printf("%d ", arr[i]);
+    }
+    printf("\n");
 }
 
 int sumArray(int arr[], int size){
@@ -64,7 +76,7 @@ void replaceValue(int arr[], int size, int target, int replacement){
 }
 
 bool isSorted(int arr[], int size){
-    for(int i = 0; i < size; i++){
+    for(int i = 0; i < size - 1; i++){
         if(arr[i] < arr[i+1]){
             continue;
         } else {
@@ -101,4 +113,26 @@ void shiftLeft(int arr[], int size){
         arr[i] = arr[i + 1];
     }
     arr[size - 1] = temp;
+}
+
+void reverseSubArray(int arr[], int start, int end) {
+    while (start < end) {
+        int temp = arr[end];
+        arr[end] = arr[start];
+        arr[start] = temp;
+        start++;
+        end--;
+    }
+}
+
+void shiftRightByK(int arr[], int size, int k) {
+    if (size == 0) return; 
+    k = k % size;          
+    if (k == 0) return;    
+
+    reverseSubArray(arr, 0, size - 1);
+    
+    reverseSubArray(arr, 0, k - 1);
+    
+    reverseSubArray(arr, k, size - 1);
 }
