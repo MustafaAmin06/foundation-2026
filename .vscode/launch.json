@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/mustafaamin/dev/foundation-2026/C/Chap1/Arrays",
-      "program": "/home/mustafaamin/dev/foundation-2026/C/Chap1/Arrays/build/Debug/outDebug",
+      "cwd": "/home/mustafaamin/dev/foundation-2026/C/Chap1/SingleLinkedList",
+      "program": "/home/mustafaamin/dev/foundation-2026/C/Chap1/SingleLinkedList/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -26,6 +26,10 @@ void printArray(int arr[], int size);
 
 void shiftRightByK(int arr[], int size, int k);
 
+int removeDuplicates(int arr[], int size);
+
+void mergeSorted(int arr1[], int size1, int arr2[], int size2, int result[]);
+
 int main(){
     int arr[5] = {1, 2, 3, 4, 5};
     shiftRightByK(arr, 5, 3);
@@ -135,4 +139,77 @@ void shiftRightByK(int arr[], int size, int k) {
     reverseSubArray(arr, 0, k - 1);
     
     reverseSubArray(arr, k, size - 1);
+}
+
+int removeDuplicates(int arr[], int size) {
+    if (size == 0 || size == 1) {
+        return size;
+    }
+    
+    int i = 1; // i is the Writer
+    
+    for (int j = 1; j < size; j++) { // j is the Reader
+        // Compare the current Reader number to the number right behind it
+        if (arr[j] != arr[j - 1]) {
+            arr[i] = arr[j];
+            i++;
+        }
+    }
+    
+    return i; // Return the final count
+}
+
+void mergeSorted(int arr1[], int size1, int arr2[], int size2, int result[]){
+    int arrResult[size1 + size2];
+    int i = 0;
+    int j = 0;
+    int k = 0;   
+    while(k < size1 + size2){
+        if (arr1[i] == arr2[j]){
+            arrResult[k] = arr1[i];
+            arrResult[k + 1] = arr1[i];
+            i++;
+            j++;
+            k+=2;
+        }
+        if (arr1[i] > arr2[j]){
+            arrResult[k] = arr2[j];
+            j++;
+            k++;
+        }
+        if (arr1[i] < arr2[j]){
+            arrResult[k] = arr1[i];
+            i++;
+            k++;
+        }
+    }
+}
+
+void mergeSortedFixed(int arr1[], int size1, int arr2[], int size2, int result[]){
+    int i = 0;
+    int j = 0;
+    int k = 0;
+
+    while (i < size1 && j < size2) {
+        if (arr1[i] <= arr2[j]) {
+            result[k] = arr1[i];
+            i++;
+        } else {
+            result[k] = arr2[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < size1) {
+        result[k] = arr1[i];
+        i++;
+        k++;
+    }
+
+    while (j < size2) {
+        result[k] = arr2[j];
+        j++;
+        k++;
+    }
 }
