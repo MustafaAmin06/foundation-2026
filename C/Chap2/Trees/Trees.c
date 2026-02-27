@@ -46,6 +46,22 @@ void printtree(treenode *root) {
     printtree_rec(root, 0);
 }
 
+bool insertnumber(treenode **rootptr, int value){
+    if (*rootptr == NULL){
+        (*rootptr) = createnode(value);
+        return true;
+    }
+    if ((*rootptr)->data == value){
+        printf("value already exists");
+        return false;
+    }
+    if (value < (*rootptr)->data){
+        return insertnumber(&((*rootptr)->left), value);
+    } else {
+        return insertnumber(&((*rootptr)->right), value);
+    }
+}
+
 int main(){
     // Create root node
     treenode *root = createnode(1);
