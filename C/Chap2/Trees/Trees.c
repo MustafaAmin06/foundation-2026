@@ -62,6 +62,79 @@ bool insertnumber(treenode **rootptr, int value){
     }
 }
 
+bool findnum(treenode *root, int value){
+    if (root == NULL){
+        return false;
+    }
+    if (root->data == value){
+        return true;
+    }
+    if (root->data < value){
+        return findnum(root->left, value);
+    } else {
+        return findnum(root->right, value);
+    }
+}
+
+bool freetree(treenode *root){
+    if (root == NULL){
+        return true;
+    }
+    freetree(root->right);
+    freetree(root->left);
+    free(root);
+    return true;
+}
+
+treenode* returnmin(treenode *root){
+    if (root == NULL){
+        return NULL;
+    }
+    if (root->left == NULL){
+        return root;
+    }
+    return returnmin(root->left);
+}
+
+bool deletenode(treenode **rootptr, int value){
+    if (*rootptr == NULL){
+        return false;
+    }
+    if ((*rootptr)->data == value){
+        // Case 1: No children
+        if ((*rootptr)->left == NULL && (*rootptr)->right == NULL){
+            free(*rootptr);
+            *rootptr = NULL;
+            return true;
+        }
+        // Case 2: Left child only
+        if ((*rootptr)->left == NULL){
+            treenode *temp = (*rootptr)->right;
+            free(*rootptr);
+            *rootptr = temp;
+            return true;
+        }
+        // Case 3: Right child only
+        if ((*rootptr)->right == NULL){
+            treenode *temp = (*rootptr)->left;
+            free(*rootptr);
+            *rootptr = temp;
+            return true;
+        }
+        // Case 4: Two children
+        treenode* lowestmin = returnmin((*rootptr)->left);
+        (*rootptr)->data = lowestmin->data;
+        deletenode(&((*rootptr)->left), lowestmin->data);
+        return true;
+    }
+
+    if (value < (*rootptr)->data){
+        return deletenode(&((*rootptr)->left), value);
+    } else {
+        return deletenode(&((*rootptr)->right), value);
+    }
+}
+
 int main(){
     // Create root node
     treenode *root = createnode(1);
