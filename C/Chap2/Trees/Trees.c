@@ -86,53 +86,44 @@ bool freetree(treenode *root){
     return true;
 }
 
-treenode* returnmin(treenode *root){
-    if (root == NULL){
-        return NULL;
+treenode* findmin(treenode* root) {
+    while (root->left != NULL) {
+        root = root->left;
     }
-    if (root->left == NULL){
-        return root;
-    }
-    return returnmin(root->left);
+    return root;
 }
 
-bool deletenode(treenode **rootptr, int value){
-    if (*rootptr == NULL){
-        return false;
-    }
-    if ((*rootptr)->data == value){
-        // Case 1: No children
-        if ((*rootptr)->left == NULL && (*rootptr)->right == NULL){
-            free(*rootptr);
-            *rootptr = NULL;
-            return true;
-        }
-        // Case 2: Left child only
-        if ((*rootptr)->left == NULL){
-            treenode *temp = (*rootptr)->right;
-            free(*rootptr);
-            *rootptr = temp;
-            return true;
-        }
-        // Case 3: Right child only
-        if ((*rootptr)->right == NULL){
-            treenode *temp = (*rootptr)->left;
-            free(*rootptr);
-            *rootptr = temp;
-            return true;
-        }
-        // Case 4: Two children
-        treenode* lowestmin = returnmin((*rootptr)->left);
-        (*rootptr)->data = lowestmin->data;
-        deletenode(&((*rootptr)->left), lowestmin->data);
-        return true;
+treenode* deletenode(treenode* root, int value) {
+    if (root == NULL) {
+        return NULL;
     }
 
-    if (value < (*rootptr)->data){
-        return deletenode(&((*rootptr)->left), value);
-    } else {
-        return deletenode(&((*rootptr)->right), value);
+    if (value < root->data) {
+        root->left = deletenode(root->left, value); // Parent catches the return
+    } 
+    else if (value > root->data) {
+        root->right = deletenode(root->right, value); // Parent catches the return
+    } 
+    
+    else {
+        // Case 1 & 2: 0 or 1 child
+        if (root->left == NULL) {
+            treenode* temp = root->right;
+            free(root);
+            return temp; 
+        } 
+        else if (root->right == NULL) {
+            treenode* temp = root->left;
+            free(root);
+            return temp; 
+        }
+        treenode* temp = findmin(root->right);
+        root->data = temp->data;
+        root->right = deletenode(root->right, temp->data);
     }
+
+    // Return the current pointer to keep the upper branches intact
+    return root;
 }
 
 int main(){
