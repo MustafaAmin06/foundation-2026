@@ -1,15 +1,19 @@
 #include <stdio.h>
 
 int main(void) {
-    printf("%d", factorial(4));
-}
-
-
-int factorial(int a){
-    if ( a == 1){
-        return 1;
+    // Top part of 9 (closed circle)
+    for(int i = 0; i < 3; i++){
+        printf("*****\n");
+        printf("*   *\n");
     }
-    else {
-        return a * factorial(a -1);
+    
+    // Bottom connection
+    printf("*****\n");
+    
+    // Descending tail
+    for(int i = 0; i < 4; i++){
+        printf("    *\n");
     }
+    
+    return 0;
 }

@@ -126,6 +126,32 @@ treenode* deletenode(treenode* root, int value) {
     return root;
 }
 
+treenode *invertTree(treenode* root){
+    if (root == NULL){
+        return NULL;
+    }
+    treenode *temp = root->left;
+    root->left = root->right;
+    root->right = temp; 
+
+    invertTree(root->left);
+    invertTree(root->right);
+    return root;
+}
+
+int search(treenode *root){
+    if (root == NULL){
+        return 0;
+    }
+    int right = search(root->right);
+    int left = search(root->left);
+    if (right > left){
+        return right + 1;
+    } else {
+        return left + 1;
+    }
+}
+
 int main(){
     // Create root node
     treenode *root = createnode(1);
