@@ -1,17 +1,13 @@
 #include <stdio.h>
 
+void calculateRowSums(int rows, int cols, int matrix[rows][cols], int results[rows]);
+
+
 int main(void) {
-  int myArray[6][6];
-  
-  for (int row = 0; row < 6; row++) {
-    for (int col = 0; col < 6; col++) {
-        if (myArray[row][col] == 1){
-            if (col < 4 && myArray[row][col + 1] == 1 && myArray[row][col + 2] == 1){
-                printf("found");
-            }
-        }
+  int matrix[6][6];
+  for (int i = 0; i < 6; i++) {
+    for (int j = 0; j < 6; j++) {
+      matrix[i][j] = rand() % 100;
     }
   }
-  printf("%d", *(myArray[0] + 1));
-  return 0;
 }
