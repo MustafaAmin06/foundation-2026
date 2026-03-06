@@ -18,5 +18,5 @@ int main(){
 }
 
 void powerOn(chip8 emulator){
-
+    emulator->pc ==
 }

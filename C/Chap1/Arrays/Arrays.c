@@ -30,10 +30,11 @@ int removeDuplicates(int arr[], int size);
 
 void mergeSorted(int arr1[], int size1, int arr2[], int size2, int result[]);
 
+int maxAvg(int arr[], int size, int k);
+
 int main(){
     int arr[5] = {1, 2, 3, 4, 5};
-    shiftRightByK(arr, 5, 3);
-    printArray(arr, 5);
+    printf("%d", maxAvg(arr, 5, 3));
 }
 
 void printArray(int arr[], int size){
@@ -212,4 +213,23 @@ void mergeSortedFixed(int arr1[], int size1, int arr2[], int size2, int result[]
         j++;
         k++;
     }
+}
+
+int maxAvg(int arr[], int size, int k){
+    int idl = 0;
+    int idr = k;
+    int maxAvg = 0;
+    while(idr != size){
+        int avg = 0;
+        for(int i = idl; i <= idr; i++){
+            avg += arr[i];
+        }
+        avg /= k;
+        if (avg > maxAvg){
+            maxAvg = avg;
+        }
+        idl++;
+        idr++;
+    }
+    return maxAvg;
 }
