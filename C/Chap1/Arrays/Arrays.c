@@ -30,11 +30,13 @@ int removeDuplicates(int arr[], int size);
 
 void mergeSorted(int arr1[], int size1, int arr2[], int size2, int result[]);
 
-int maxAvg(int arr[], int size, int k);
+double maxAvg(int arr[], int size, int k);
+
+int minSubArrayLen(int target, int* nums, int numsSize);
 
 int main(){
-    int arr[5] = {1, 2, 3, 4, 5};
-    printf("%d", maxAvg(arr, 5, 3));
+    int arr[5] = {2, 3, 1, 1, 4, 3};
+    printf("%d", minSubArrayLen(7, arr, 6));
 }
 
 void printArray(int arr[], int size){
@@ -215,21 +217,26 @@ void mergeSortedFixed(int arr1[], int size1, int arr2[], int size2, int result[]
     }
 }
 
-int maxAvg(int arr[], int size, int k){
-    int idl = 0;
-    int idr = k;
-    int maxAvg = 0;
-    while(idr != size){
-        int avg = 0;
-        for(int i = idl; i <= idr; i++){
-            avg += arr[i];
-        }
-        avg /= k;
-        if (avg > maxAvg){
-            maxAvg = avg;
-        }
-        idl++;
-        idr++;
+
+// Implimented a static sliding window algorithm to solve a maxAvg array problem
+double maxAvg(int arr[], int size, int k){
+    int current_sum = 0;
+    int max_sum = 0;
+    for (int i = 0; i < k; i++){
+        current_sum += arr[i];
     }
-    return maxAvg;
+    max_sum = current_sum;
+    for (int i = k; i < size; i++){
+        current_sum += arr[k];
+        current_sum -= arr[k - i];
+        if (current_sum > max_sum){
+            max_sum = current_sum;
+        }
+    }
+    return (double)max_sum / k;
+}
+
+int minSubArrayLen(int target, int* nums, int numsSize){
+    int total = 0;
+    for(int i = 0; total < )
 }

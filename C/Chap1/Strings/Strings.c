@@ -1,9 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
 
-int main(){
-    char s[] = "hello";
-    printf("%s", s + 1);
+int main(void) {
+  printf("Enter characters: \n");
+  char c = getchar();
+  while (c != '\n') {
+    printf("%c\n", c);
+    c = getchar();
+  }
+  return 0;
 }
