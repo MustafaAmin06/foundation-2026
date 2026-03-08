@@ -102,3 +102,31 @@ bool initSectionInArray(int A[1000][1000], int result[1000][1000], int rows, int
   }
   return true;
 }
+// This solution is O(n^2) time, O(n) space.
+
+void clockWise90(int a, int src[a][a], int res[a][a]){
+  for(int r = 0; r < a; r++){
+    for(int c = 0; c < a; c++){
+      res[c][(a - 1) - r] = src[r][c];
+    }
+  }
+}
+// This solution is O(n^2) time, O(1) space.
+void rotateInPlace(int a, int src[a][a]) {
+    // 1. Transpose
+    for (int r = 0; r < a; r++) {
+        for (int c = r; c < a; c++) {
+            int temp = src[r][c];
+            src[r][c] = src[c][r];
+            src[c][r] = temp;
+        }
+    }
+    for(int r = 0; r < a; r++){
+      for(int c = 0; c < a/2; c++){
+        int temp = src[r][c];
+        src[r][c] = src[r][(a - 1) - c];
+        src[r][(a - 1) - c] = temp;
+      }
+    }
+    
+}
