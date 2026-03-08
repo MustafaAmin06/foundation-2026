@@ -252,3 +252,33 @@ bool isVowel(char character){
 bool isWhitespace(char character){
 	return character == ' ' || character == '\n' || character == '\t';
 }
+
+
+
+bool isAnagram(char *s1, char *s2){
+    // Step 1: check same length
+    int i = 0;
+    int j = 0;
+    while(s1[i] != '\0') i++;
+    while(s2[j] != '\0') j++;
+    if(i != j) return false;
+
+    // Step 2: for every character in s1, count how many times
+    // it appears in s1 vs s2 — they must match
+    for(int k = 0; s1[k] != '\0'; k++){
+        char target = s1[k];
+        int count1 = 0;
+        int count2 = 0;
+
+        for(int m = 0; s1[m] != '\0'; m++){
+            if(s1[m] == target) count1++;
+        }
+        for(int m = 0; s2[m] != '\0'; m++){
+            if(s2[m] == target) count2++;
+        }
+
+        if(count1 != count2) return false;
+    }
+
+    return true;
+}

@@ -237,6 +237,47 @@ double maxAvg(int arr[], int size, int k){
 }
 
 int minSubArrayLen(int target, int* nums, int numsSize){
-    int total = 0;
-    for(int i = 0; total < )
+    int right = 0;
+    int left = 0;
+    int sum = 0;
+    int minlen = 100000;
+    for(; right < numsSize; right ++){
+        sum += nums[right];
+        while(sum >= target){
+            int current_len = right - left + 1;
+            if (current_len < minlen){
+                minlen = current_len;
+            }
+            sum -= nums[left];
+            left++;
+        }
+    }
+    return minlen;
+
+}
+
+int* twoSum(int* numbers, int numbersSize, int target, int* returnSize) {
+    int i = 0;
+    int j = numbersSize - 1;
+
+    while (i < j) {
+        int sum = numbers[i] + numbers[j];
+
+        if (sum == target) {
+            int* result = (int*)malloc(2 * sizeof(int));
+            
+            result[0] = i + 1;
+            result[1] = j + 1;
+            *returnSize = 2;
+            return result;
+        } 
+        else if (sum > target) {
+            j--;
+        } 
+        else {
+            i++;
+        }
+    }
+    *returnSize = 0;
+    return NULL; 
 }
