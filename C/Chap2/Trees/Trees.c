@@ -145,11 +145,20 @@ int search(treenode *root){
     }
     int right = search(root->right);
     int left = search(root->left);
-    if (right > left){
-        return right + 1;
-    } else {
-        return left + 1;
+    return MAX(left, right) + 1;
+}
+
+bool sametree(treenode *p, treenode *q){
+    if (p == NULL && q == NULL){
+        return true;
     }
+    if ((p == NULL && q != NULL) || (p != NULL && q == NULL)){
+        return false;
+    }
+    if (p->data != q->data){
+        return false;
+    }
+    return ((sametree(p->right, q->right) && sametree(q->left, p->left)));
 }
 
 int main(){
