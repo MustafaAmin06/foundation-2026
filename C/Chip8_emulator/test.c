@@ -48,8 +48,8 @@ int main(void){
 
     // ── Bitwise AND ─────────────────────────────────────────────────────────
     // Use & to mask (isolate) specific bits
-    uint8_t a = 0b11001010;
-    uint8_t mask = 0b00001111;
+    uint8_t a = 0xCA;
+    uint8_t mask = 15u;
     printf("\nAND  %02X & %02X = %02X  (isolate low nibble)\n", a, mask, a & mask);
 
     // ── Bitwise OR ──────────────────────────────────────────────────────────
@@ -62,15 +62,15 @@ int main(void){
     // ── Bitwise XOR ─────────────────────────────────────────────────────────
     // Used in CHIP-8 opcode 8xy3 (Vx XOR Vy)
     // Also used in the draw opcode to flip pixels on screen
-    uint8_t vx = 0b10101010;
-    uint8_t vy = 0b11001100;
+    uint8_t vx = 0xAA;
+    uint8_t vy = 0xCC;
     printf("XOR  %02X ^ %02X = %02X\n", vx, vy, vx ^ vy);
 
     // ── Bit shifting ────────────────────────────────────────────────────────
     // >> shifts bits right (divide by 2)
     // << shifts bits left  (multiply by 2)
     // Used in opcodes 8xy6 (shift right) and 8xyE (shift left)
-    uint8_t val = 0b10110100;
+    uint8_t val = 0xB4;
     printf("\nSHL  %02X << 1 = %02X\n", val, (uint8_t)(val << 1));
     printf("SHR  %02X >> 1 = %02X\n", val, val >> 1);
 
