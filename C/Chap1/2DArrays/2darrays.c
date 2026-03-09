@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#define SIZE 100
 
 void calculateRowSums(int rows, int cols, int matrix[rows][cols], int results[rows]);
 bool initSectionInArray(int A[1000][1000], int result[1000][1000], int rows, int cols, int sr, int er, int sc, int ec, int value);
@@ -129,4 +130,18 @@ void rotateInPlace(int a, int src[a][a]) {
       }
     }
     
+}
+
+void averageImage(double A[100][100], double b [98][98]){
+  for(int i = 1; i < 99; i++){
+    for(int j = 1; j < 99; j++){
+      int sum = A[i-1][j-1] + A[i-1][j] + A[i-1][j+1] + A[i][j-1] + A[i][j] + A[i][j+1] + A[i+1][j-1] + A[i+1][j] + A[i+1][j+1];
+      sum /= (double) 9;
+      b[i-1][j-1] = sum;
+    }
+  }
+}
+
+bool isCross(int A[SIZE][SIZE], int r, int c, int k){
+
 }
